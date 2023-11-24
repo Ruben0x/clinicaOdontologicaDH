@@ -49,14 +49,9 @@ public class TurnoService implements ITurnoService {
 
 
         PacienteSalidaDto pacienteTurno = pacienteService.buscarPacientePorId(pacienteId);
-        Paciente pacienteEntidad = modelMapper.map(pacienteTurno, Paciente.class);
-
-        LOGGER.info("Paciente Turno: {}", JsonPrinter.toString(pacienteEntidad));
+        LOGGER.info("Paciente Turno: {}", JsonPrinter.toString(pacienteTurno));
         OdontologoSalidaDto odontologoTurno = odontologoService.buscarOdontologoPorId(odontologoId);
-        Odontologo odontologoEntidad = modelMapper.map(odontologoTurno, Odontologo.class);
-        LOGGER.info("Odontologo Turno: {}", JsonPrinter.toString(odontologoTurno));
-
-
+        LOGGER.info("Paciente Turno: {}", JsonPrinter.toString(odontologoTurno));
         if(pacienteTurno == null){
             throw new BadRequestException("Este paciente no existe");
         }
@@ -66,6 +61,12 @@ public class TurnoService implements ITurnoService {
         if(turnoEntradaDto.getFechaYHora() == null){
             throw new BadRequestException("No se ha especificado la fecha/hora del turno");
         }
+
+        Paciente pacienteEntidad = modelMapper.map(pacienteTurno, Paciente.class);
+        LOGGER.info("Paciente Entidad: {}", JsonPrinter.toString(pacienteEntidad));
+
+        Odontologo odontologoEntidad = modelMapper.map(odontologoTurno, Odontologo.class);
+        LOGGER.info("Odontologo Entidad: {}", JsonPrinter.toString(odontologoTurno));
 
         Turno turnoEntidad = new Turno();
         turnoEntidad.setPaciente(pacienteEntidad);
@@ -103,7 +104,7 @@ public class TurnoService implements ITurnoService {
     public TurnoSalidaDto buscarTurnoPorId(Long id) throws ResourceNotFoundException {
 
         Turno turnoBuscado = turnoRepository.findById(id).orElse(null);
-        TurnoSalidaDto turnoEncontrado = null;
+        TurnoSalidaDto turnoEncontrado;
 
         if (turnoBuscado != null) {
             turnoEncontrado = crearTurnoSalidaDto(turnoBuscado);
@@ -118,11 +119,52 @@ public class TurnoService implements ITurnoService {
     }
 
     @Override
-    public TurnoSalidaDto actualizarTurno(TurnoModificacionDto turnoModificacionDto) throws ResourceNotFoundException {
+    public TurnoSalidaDto actualizarTurno(TurnoModificacionDto turnoModificacionDto) throws ResourceNotFoundException, BadRequestException {
+
+        Turno turnoAModificar = turnoRepository.findById(turnoModificacionDto.getId()).orElse(null);
+        TurnoSalidaDto turnoSalidaDto = new TurnoSalidaDto();
+        if(turnoAModificar!=null){
+
+            PacienteSalidaDto pacienteSalidaDto = pacienteService.buscarPacientePorId(turnoModificacionDto.getPacienteId());
+            LOGGER.info("PacienteSalidaDto: {}", JsonPrinter.toString(pacienteSalidaDto));
+
+            OdontologoSalidaDto odontologoSalidaDto = odontologoService.buscarOdontologoPorId(turnoModificacionDto.getOdontologoId());
+            LOGGER.info("OdontologoSalidaDto: {}", JsonPrinter.toString(odontologoSalidaDto));
+
+            if(pacienteSalidaDto == null){
+                throw new BadRequestException("Este paciente no existe");
+            }
+            if(odontologoSalidaDto == null){
+                throw new BadRequestException("Este odontologo no existe");
+            }
+            if(turnoModificacionDto.getFechaYHora() == null){
+                throw new BadRequestException("No se ha especificado la fecha/hora del turno");
+            }
+
+            Paciente pacienteEntidad = modelMapper.map(pacienteSalidaDto, Paciente.class);
+            Odontologo odontologoEntidad = modelMapper.map(odontologoSalidaDto, Odontologo.class);
 
 
+            Turno turnoEntidad = new Turno();
+            turnoEntidad.setId(turnoModificacionDto.getId());
+            turnoEntidad.setPaciente(pacienteEntidad);
+            turnoEntidad.setOdontologo(odontologoEntidad);
+            turnoEntidad.setFechaYHora(turnoModificacionDto.getFechaYHora());
 
-        return null;
+            LOGGER.info("Turno Entidad: {}", JsonPrinter.toString(turnoEntidad));
+            turnoAModificar = turnoEntidad;
+            turnoRepository.save(turnoAModificar);
+            LOGGER.info("Turno Modificado: {}", JsonPrinter.toString(turnoAModificar));
+
+            turnoSalidaDto = crearTurnoSalidaDto(turnoAModificar);
+            LOGGER.info("Turno Salida Dto: {}", JsonPrinter.toString(turnoSalidaDto));
+
+        }else{
+            LOGGER.error("No fue posible actualizar el turno porque el mismo no se encuentra regitrado en la base de datos");
+            throw new ResourceNotFoundException("No fue posible actualizar el turno porque el mismo no se encuentra regitrado en la base de datos");
+
+        }
+        return turnoSalidaDto;
     }
 
     @Override

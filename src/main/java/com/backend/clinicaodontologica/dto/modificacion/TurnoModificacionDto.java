@@ -3,7 +3,6 @@ package com.backend.clinicaodontologica.dto.modificacion;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import javax.validation.Valid;
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
@@ -17,10 +16,10 @@ public class TurnoModificacionDto {
     @NotNull(message = "Debe especificarse la fecha de ingreso del paciente")
     private LocalDateTime fechaYHora;
 
-    @NotNull(message = "El odontologo no puede ser nulo")
+    @NotNull(message = "El turno tiene que tener un odontólogo registrado")
     private Long odontologoId;
 
-    @NotNull(message = "El paciente no puede ser nulo")
+    @NotNull(message = "El turno tiene que tener un paciente registrado")
     private Long pacienteId;
 
 

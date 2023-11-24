@@ -10,7 +10,7 @@ window.addEventListener('load', function () {
         event.preventDefault();
 
 
-        let pacienteId = document.querySelector('#paciente_id').value;
+//        let pacienteId = document.querySelector('#paciente_id').value;
 
         //creamos un JSON que tendrá los datos del paciente
         //a diferencia de un paciente nuevo en este caso enviamos el id
@@ -58,7 +58,7 @@ window.addEventListener('load', function () {
     //se encarga de llenar el formulario con los datos de la pelicula
     //que se desea modificar
     function findBy(id) {
-          const url = '/pacientes/buscar'+"/"+id;
+          const url = "http://localhost:8081/pacientes/buscar" + "/" + id;
           const settings = {
               method: 'GET'
           }

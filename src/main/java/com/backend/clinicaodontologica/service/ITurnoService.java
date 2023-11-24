@@ -13,7 +13,7 @@ public interface ITurnoService {
     TurnoSalidaDto registrarTurno(TurnoEntradaDto turnoEntradaDto) throws BadRequestException, ResourceNotFoundException;
     List<TurnoSalidaDto> listarTurnos();
     TurnoSalidaDto buscarTurnoPorId(Long id) throws ResourceNotFoundException;
-    TurnoSalidaDto actualizarTurno(TurnoModificacionDto turnoModificacionDto) throws ResourceNotFoundException;
+    TurnoSalidaDto actualizarTurno(TurnoModificacionDto turnoModificacionDto) throws ResourceNotFoundException, BadRequestException;
     void eliminarTurno(Long id) throws ResourceNotFoundException;
 
 

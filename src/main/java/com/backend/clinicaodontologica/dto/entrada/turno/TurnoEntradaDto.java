@@ -1,10 +1,5 @@
 package com.backend.clinicaodontologica.dto.entrada.turno;
 
-
-import com.backend.clinicaodontologica.entity.Odontologo;
-import com.backend.clinicaodontologica.entity.Paciente;
-
-import javax.validation.Valid;
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
@@ -22,17 +17,6 @@ public class TurnoEntradaDto {
     private Long pacienteId;
 
 
-
-
-
-//    @NotNull(message = "El odontologo no puede ser nulo")
-////    @NotBlank(message = "Debe especificarse el odontologo")
-//    private Odontologo odontologo;
-//
-//    @NotNull(message = "El paciente no puede ser nulo")
-//    @Valid
-////    @NotBlank(message = "Debe especificarse el paciente")
-//    private Paciente paciente;
 
 
     public TurnoEntradaDto(Long pacienteId, Long odontologoId, LocalDateTime fechaYHora) {
