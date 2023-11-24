@@ -10,7 +10,7 @@ import java.util.List;
 public interface IPacienteService {
     PacienteSalidaDto registrarPaciente(PacienteEntradaDto paciente);
     List<PacienteSalidaDto> listarPacientes();
-    PacienteSalidaDto buscarPacientePorId(Long id);
+    PacienteSalidaDto buscarPacientePorId(Long id) throws ResourceNotFoundException;
     PacienteSalidaDto actualizarPaciente(PacienteModificacionDto pacienteModificacionDto) throws ResourceNotFoundException;
     void eliminarPaciente(Long id) throws ResourceNotFoundException;
     PacienteSalidaDto buscarPacientePorDni(Integer dni);

@@ -4,7 +4,7 @@ package com.backend.clinicaodontologica.dto.modificacion;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
@@ -13,27 +13,25 @@ public class TurnoModificacionDto {
 
     @NotNull(message = "Debe proveerse el id del turno que se desea modificar")
     private Long id;
-
+    @FutureOrPresent(message = "La fecha no puede ser anterior al día de hoy")
     @NotNull(message = "Debe especificarse la fecha de ingreso del paciente")
     private LocalDateTime fechaYHora;
 
     @NotNull(message = "El odontologo no puede ser nulo")
-    @Valid
-    private OdontologoModificacionDto odontologoModificacionDto;
+    private Long odontologoId;
 
     @NotNull(message = "El paciente no puede ser nulo")
-    @Valid
-    private PacienteModificacionDto pacienteModificacionDto;
+    private Long pacienteId;
 
 
     public TurnoModificacionDto() {
     }
 
-    public TurnoModificacionDto(Long id, LocalDateTime fechaYHora, OdontologoModificacionDto odontologoModificacionDto, PacienteModificacionDto pacienteModificacionDto) {
+    public TurnoModificacionDto(Long id, LocalDateTime fechaYHora, Long odontologoId, Long pacienteId) {
         this.id = id;
         this.fechaYHora = fechaYHora;
-        this.odontologoModificacionDto = odontologoModificacionDto;
-        this.pacienteModificacionDto = pacienteModificacionDto;
+        this.odontologoId = odontologoId;
+        this.pacienteId = pacienteId;
     }
 
     public Long getId() {
@@ -52,19 +50,19 @@ public class TurnoModificacionDto {
         this.fechaYHora = fechaYHora;
     }
 
-    public OdontologoModificacionDto getOdontologoModificacionDto() {
-        return odontologoModificacionDto;
+    public Long getOdontologoId() {
+        return odontologoId;
     }
 
-    public void setOdontologoModificacionDto(OdontologoModificacionDto odontologoModificacionDto) {
-        this.odontologoModificacionDto = odontologoModificacionDto;
+    public void setOdontologoId(Long odontologoId) {
+        this.odontologoId = odontologoId;
     }
 
-    public PacienteModificacionDto getPacienteModificacionDto() {
-        return pacienteModificacionDto;
+    public Long getPacienteId() {
+        return pacienteId;
     }
 
-    public void setPacienteModificacionDto(PacienteModificacionDto pacienteModificacionDto) {
-        this.pacienteModificacionDto = pacienteModificacionDto;
+    public void setPacienteId(Long pacienteId) {
+        this.pacienteId = pacienteId;
     }
 }

@@ -30,7 +30,7 @@ public class TurnoController {
 
     //POST
     @PostMapping("/registrar")
-    public ResponseEntity<TurnoSalidaDto> registrarTurno(@RequestBody @Valid TurnoEntradaDto turnoEntradaDto) throws BadRequestException {
+    public ResponseEntity<TurnoSalidaDto> registrarTurno(@RequestBody @Valid TurnoEntradaDto turnoEntradaDto) throws BadRequestException, ResourceNotFoundException {
         return new ResponseEntity<>(iTurnoService.registrarTurno(turnoEntradaDto), HttpStatus.CREATED);
     }
 
@@ -47,7 +47,7 @@ public class TurnoController {
 
     //Get
     @GetMapping("/buscar/{id}")
-    public ResponseEntity<TurnoSalidaDto> buscarTurnoPorId(@PathVariable Long id){
+    public ResponseEntity<TurnoSalidaDto> buscarTurnoPorId(@PathVariable Long id) throws ResourceNotFoundException {
         return new ResponseEntity<>(iTurnoService.buscarTurnoPorId(id), HttpStatus.OK);
     }
 

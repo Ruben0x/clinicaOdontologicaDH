@@ -64,14 +64,17 @@ public class PacienteService implements IPacienteService {
     }
 
     @Override
-    public PacienteSalidaDto buscarPacientePorId(Long id) {
+    public PacienteSalidaDto buscarPacientePorId(Long id) throws ResourceNotFoundException {
         Paciente pacienteBuscado = pacienteRepository.findById(id).orElse(null);
         PacienteSalidaDto pacienteEncontrado = null;
 
         if (pacienteBuscado != null) {
             pacienteEncontrado = modelMapper.map(pacienteBuscado, PacienteSalidaDto.class);
             LOGGER.info("Paciente encontrado: {}", JsonPrinter.toString(pacienteEncontrado));
-        } else LOGGER.error("El id no se encuentra registrado en la base de datos");
+        } else {
+            LOGGER.error("El id no se encuentra registrado en la base de datos");
+            throw new ResourceNotFoundException("No se ha encontrado el paciente con id "+ id);
+        }
 
         return pacienteEncontrado;
     }
