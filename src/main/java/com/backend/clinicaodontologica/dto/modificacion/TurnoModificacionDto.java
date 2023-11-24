@@ -1,6 +1,7 @@
 package com.backend.clinicaodontologica.dto.modificacion;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.validation.constraints.FutureOrPresent;
@@ -14,6 +15,7 @@ public class TurnoModificacionDto {
     private Long id;
     @FutureOrPresent(message = "La fecha no puede ser anterior al día de hoy")
     @NotNull(message = "Debe especificarse la fecha de ingreso del paciente")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime fechaYHora;
 
     @NotNull(message = "El turno tiene que tener un odontólogo registrado")
