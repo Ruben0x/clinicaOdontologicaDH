@@ -18,6 +18,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/turnos")
 public class TurnoController {
 

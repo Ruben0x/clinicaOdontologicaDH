@@ -5,6 +5,7 @@ import com.backend.clinicaodontologica.dto.modificacion.TurnoModificacionDto;
 import com.backend.clinicaodontologica.dto.salida.odontologo.OdontologoSalidaDto;
 import com.backend.clinicaodontologica.dto.salida.paciente.PacienteSalidaDto;
 import com.backend.clinicaodontologica.dto.salida.turno.TurnoSalidaDto;
+import com.backend.clinicaodontologica.entity.Paciente;
 import com.backend.clinicaodontologica.entity.Turno;
 import com.backend.clinicaodontologica.exceptions.BadRequestException;
 import com.backend.clinicaodontologica.exceptions.ResourceNotFoundException;
@@ -36,6 +37,29 @@ public class TurnoService implements ITurnoService {
         configureMapping();
     }
 
+//    @Override
+//    public TurnoSalidaDto crearTurno(TurnoEntradaDto turnoEntradaDto) throws BadRequestException {
+//
+//        Long pacienteId = turnoEntradaDto.getPacienteId();
+//        Long odontologoId = turnoEntradaDto.getOdontologoId();
+//
+//        PacienteSalidaDto pacienteTurno = pacienteService.buscarPacientePorId(pacienteId);
+//        LOGGER.info("PacienteSalidaDto: {}", pacienteTurno);
+//        OdontologoSalidaDto odontologoSalidaDto = odontologoService.buscarOdontologoPorId(odontologoId);
+//
+//        if(pacienteTurno == null){
+//            throw new BadRequestException("Este paciente no existe");
+//        }
+//        if(odontologoTurno == null){
+//            throw new BadRequestException("Este odontologo no existe");
+//        }
+//
+//
+//
+//
+//
+//        return null;
+//    }
 
     @Override
     public TurnoSalidaDto registrarTurno(TurnoEntradaDto turnoEntradaDto) throws BadRequestException {
@@ -86,6 +110,8 @@ public class TurnoService implements ITurnoService {
             LOGGER.info("Listado de todos los turnos: {}", JsonPrinter.toString(turnoSalidaDtos));
         return turnoSalidaDtos;
     }
+
+
 
     @Override
     public TurnoSalidaDto buscarTurnoPorId(Long id) {
@@ -138,6 +164,8 @@ public class TurnoService implements ITurnoService {
         }
 
     }
+
+
 
     private void configureMapping(){
         modelMapper.typeMap(TurnoEntradaDto.class, Turno.class)

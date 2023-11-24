@@ -10,8 +10,13 @@ import java.time.LocalDateTime;
 
 public class TurnoEntradaDto {
 
+//    private Long pacienteId;
+//    private Long odontologoId;
     @NotNull(message = "Debe especificarse la fecha de ingreso del paciente")
     private LocalDateTime fechaYHora;
+
+
+
 
     @NotNull(message = "El odontologo no puede ser nulo")
 //    @NotBlank(message = "Debe especificarse el odontologo")
@@ -21,6 +26,7 @@ public class TurnoEntradaDto {
     @Valid
 //    @NotBlank(message = "Debe especificarse el paciente")
     private Paciente paciente;
+
 
     public TurnoEntradaDto(LocalDateTime fechaYHora, Odontologo odontologo, Paciente paciente) {
         this.fechaYHora = fechaYHora;

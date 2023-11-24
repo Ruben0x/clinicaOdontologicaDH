@@ -19,4 +19,7 @@ public interface ITurnoService {
     TurnoSalidaDto actualizarTurno(TurnoModificacionDto turnoModificacionDto) throws ResourceNotFoundException;
     void eliminarTurno(Long id) throws ResourceNotFoundException;
 
+//    TurnoSalidaDto crearTurno(Long pacienteId, Long odontologoId) throws BadRequestException;
+
+
 }
