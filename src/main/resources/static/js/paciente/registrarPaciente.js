@@ -1,4 +1,8 @@
 window.addEventListener("load", function () {
+    var paciente = {
+
+    }
+
   const formulario = document.forms[0];
   const url = "http://localhost:8081/pacientes/registrar";
   formulario.addEventListener("submit", function (evento) {
@@ -16,7 +20,7 @@ window.addEventListener("load", function () {
     const localidadDomicilio = document.querySelector("#localidadDomicilio");
     const provinciaDomicilio = document.querySelector("#provinciaDomicilio");
 
-    const paciente = {
+    paciente = {
       nombre: nombrePaciente.value,
       apellido: apellidoPaciente.value,
       dni: dniPaciente.value,
@@ -47,7 +51,8 @@ window.addEventListener("load", function () {
       .then((res) =>
       res.json())
       .then((data) => {
-        console.log(data);
-      });
+        console.log(data)
+      })
+    formulario.reset();
   }
 });
