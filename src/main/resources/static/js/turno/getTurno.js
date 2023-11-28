@@ -1,7 +1,7 @@
 window.addEventListener("load", function () {
   (function () {
-    //con fetch invocamos a la API de pacientes con el método GET
-    //nos devolverá un JSON con una colección de pacientes
+    //con fetch invocamos a la API de turnos con el método GET
+    //nos devolverá un JSON con una colección de turnos
     const url = "http://localhost:8081/turnos/listar";
     const settings = {
       method: "GET",
@@ -10,18 +10,18 @@ window.addEventListener("load", function () {
     fetch(url, settings)
       .then((response) => response.json())
       .then((data) => {
-        //recorremos la colección de pacientes del JSON
+        //recorremos la colección de turnos del JSON
         for (turno of data) {
-          //por cada paciente armaremos una fila de la tabla
-          //cada fila tendrá un id que luego nos permitirá borrar la fila si eliminamos la paciente
+          //por cada turno armaremos una fila de la tabla
+          //cada fila tendrá un id que luego nos permitirá borrar la fila si eliminamos el turno
           var table = document.getElementById("turnoTable");
           var turnoRow = table.insertRow();
           let tr_id = "tr_" + turno.id;
           turnoRow.id = tr_id;
 
-          //por cada paciente creamos un boton delete que agregaremos en cada fila para poder eliminar la misma
+          //por cada turno creamos un boton delete que agregaremos en cada fila para poder eliminar la misma
           //dicho boton invocara a la funcion de java script deleteByKey que se encargará
-          //de llamar a la API para eliminar una paciente
+          //de llamar a la API para eliminar un turno
           let deleteButton =
             "<button" +
             " id=" +
@@ -31,13 +31,13 @@ window.addEventListener("load", function () {
             '"' +
             ' type="button" onclick="deleteBy(' +
             turno.id +
-            ')" class="btn btn-danger btn_delete">' +
-            "&times" +
+            ')">' +
+            '<i class="fas fa-trash-alt" id="delete"></i>' +
             "</button>";
 
-          //por cada paciente creamos un boton que muestra el id y que al hacerle clic invocará
-          //a la función de java script findBy que se encargará de buscar la paciente que queremos
-          //modificar y mostrar los datos de la misma en un formulario.
+          //por cada turno creamos un boton que muestra el id y que al hacerle clic invocará
+          //a la función de java script findBy que se encargará de buscar el turno que queremos
+          //modificar y mostrar los datos del mismo en un formulario.
           let updateButton =
             "<button" +
             " id=" +
@@ -47,32 +47,34 @@ window.addEventListener("load", function () {
             '"' +
             ' type="button" onclick="findBy(' +
             turno.id +
-            ')" class="btn btn-info btn_id">' +
-            turno.id +
+            ')">' +
+            '<i class="fas fa-pen-alt" id="edit"></i>' +
             "</button>";
 
           //armamos cada columna de la fila
-          //como primer columna pondremos el boton modificar
-          //luego los datos de la paciente
-          //como ultima columna el boton eliminar
+          //luego los datos del turno
+          //como ultimas columnas los botonnes editar y eliminar
           turnoRow.innerHTML =
             "<td>" +
-            updateButton +
+            turno.id +
             "</td>" +
-            '<td class="td_fechaHora">' +
+            '<td>' +
             turno.fechaYHora +
             "</td>" +
-            '<td class="td_odontologoId">' +
+            '<td>' +
             turno.odontologo_id +
             "</td>" +
-            '<td class="td_fechaIngreso">' +
+            '<td>' +
             turno.nombreOdontologo +
             "</td>" +
-            '<td class="td_calle">' +
+            '<td>' +
             turno.paciente_id +
             "</td>" +
-            '<td class="td_numero">' +
+            '<td>' +
             turno.nombrePaciente +
+            "</td>" +
+            "<td>" +
+            updateButton +
             "</td>" +
             "<td>" +
             deleteButton +

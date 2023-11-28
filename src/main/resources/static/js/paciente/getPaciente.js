@@ -42,7 +42,7 @@ window.addEventListener('load', function () {
             //como primer columna pondremos el boton modificar
             //luego los datos de la paciente
             //como ultima columna el boton eliminar
-            pacienteRow.innerHTML = '<td>' + updateButton + '</td>' +
+            pacienteRow.innerHTML = '<td>' + paciente.id + '</td>' +
                     '<td class=\"td_nombre\">' + paciente.nombre.toUpperCase() + '</td>' +
                     '<td class=\"td_apellido\">' + paciente.apellido.toUpperCase() + '</td>' +
                     '<td class=\"td_dni\">' + paciente.dni + '</td>' +
@@ -51,7 +51,7 @@ window.addEventListener('load', function () {
                     '<td class=\"td_numero\">' + paciente.domicilioSalidaDto.numero + '</td>' +
                     '<td class=\"td_localidad\">' + paciente.domicilioSalidaDto.localidad + '</td>' +
                     '<td class=\"td_provincia\">' + paciente.domicilioSalidaDto.provincia + '</td>' +
-
+                    '<td>' + updateButton + '</td>' +
                     '<td>' + deleteButton + '</td>';
 
         };
