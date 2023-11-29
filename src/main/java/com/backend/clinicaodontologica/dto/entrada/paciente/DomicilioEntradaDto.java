@@ -17,8 +17,8 @@ public class DomicilioEntradaDto {
     @NotBlank(message = "El campo localidad no puede estar en blanco")
     private String localidad;
 
-    @NotNull(message = "El campo calle no puede ser nula")
-    @NotBlank(message = "El campo calle no puede estar en blanco")
+    @NotNull(message = "El campo provincia no puede ser nula")
+    @NotBlank(message = "El campo provincia no puede estar en blanco")
     private String provincia;
 
     public DomicilioEntradaDto(String calle, int numero, String localidad, String provincia) {

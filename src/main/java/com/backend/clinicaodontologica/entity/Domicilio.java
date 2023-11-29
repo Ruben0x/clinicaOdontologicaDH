@@ -10,9 +10,13 @@ public class Domicilio {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(length = 50)
     private String calle;
+    @Column(length = 50)
     private int numero;
+    @Column(length = 50)
     private String localidad;
+    @Column(length = 50)
     private String provincia;
     public Domicilio() {
     }
