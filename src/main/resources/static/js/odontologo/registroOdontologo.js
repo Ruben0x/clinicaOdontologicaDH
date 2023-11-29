@@ -45,7 +45,7 @@ window.addEventListener("load", function () {
         mostrarModal("Odontologo registrado con exito");
         formulario.reset();
       }).catch((error) => {
-        console.log(error);
+        mostrarModal(error);
       })
 
 
