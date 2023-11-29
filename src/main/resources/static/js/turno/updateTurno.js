@@ -30,12 +30,28 @@ window.addEventListener("load", function () {
       },
       body: JSON.stringify(formData),
     };
+
     fetch(url, settings)
-      .then((response) => {
-        console.log(response);
-        response.json();
-      })
-      .then((data) => console.log(data));
+         .then(response => {
+             console.log(response);
+             if (!response.ok) {
+                 throw new Error("Error al actualizar el turno");
+                 }
+             return response.json();
+         })
+         .then(data => {
+             console.log(data);
+             mostrarModal("Turno actualizado con exito");
+             document.querySelector("#form_update").classList.remove("form-body");
+             document.querySelector("#form_update").classList.add("form-body-hide");
+             setTimeout(() => {
+                 window.location.reload();
+             }, 2000);
+         })
+         .catch(error => {
+             mostrarModal(error);
+         });
+
   });
 });
 
@@ -60,9 +76,25 @@ function findBy(id) {
       document.querySelector("#horaTurno").value = hora;
 
       //el formulario por default esta oculto y al editar se habilita
-      document.querySelector("#div_turno_updating").style.display = "block";
+        document.querySelector("#form_update").classList.remove("form-body-hide");
+        document.querySelector("#form_update").classList.add("form-body");
     })
     .catch((error) => {
       alert("Error: " + error);
     });
 }
+
+
+            function mostrarModal(mensaje) {
+                // Función para mostrar un modal
+              // Selecciona el modal
+              const modal = document.getElementById('miModal');
+
+              // Actualiza el mensaje en el modal
+              const modalMensaje = modal.querySelector('.modal-body');
+              modalMensaje.textContent = mensaje;
+
+              // Muestra el modal
+              const miModal = new bootstrap.Modal(modal);
+              miModal.show();
+            }

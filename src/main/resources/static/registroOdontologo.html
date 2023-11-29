@@ -56,7 +56,7 @@
             <p>Complete todos los campos</p>
             <form>
               <div class="col-md-12">
-                <input class="form-control" type="text" name="numeroMatricula" id="numeroMatricula" placeholder="N° Matricula" required>
+                <input class="form-control" type="text" name="numeroMatricula" id="numeroMatricula" placeholder="N° Matricula" required min="10" maxlength="20">
               </div>
               <div class="col-md-12">
                 <input class="form-control" type="text" name="nombreOdontologo"  id="nombreOdontologo" placeholder="Nombre" required>
@@ -69,6 +69,23 @@
               </div>
             </form>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="miModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+        </div>
+        <div class="modal-footer">
+          <!--<button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>-->
         </div>
       </div>
     </div>

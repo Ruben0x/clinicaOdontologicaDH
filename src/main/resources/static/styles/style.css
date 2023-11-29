@@ -26,6 +26,12 @@ body {
     display: none;
 }
 
+label{
+    color: #fff;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
 .form-body {
     display: flex;
     justify-content: center;
@@ -209,4 +215,10 @@ button{
     background-color: transparent;
     border: none;
     cursor: pointer;
+}
+
+.modal-body{
+    display: flex;
+    align-self: center;
+    font-size: larger;
 }

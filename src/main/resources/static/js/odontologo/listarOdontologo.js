@@ -11,6 +11,7 @@ window.addEventListener('load', function () {
       fetch(url,settings)
       .then(response => response.json())
       .then(data => {
+            console.log(data);
       //recorremos la colección de odontologos del JSON
          for(odontologo of data){
             //por cada odontologo armaremos una fila de la tabla
@@ -24,10 +25,10 @@ window.addEventListener('load', function () {
             //dicho boton invocara a la funcion de java script deleteByKey que se encargará
             //de llamar a la API para eliminar un odontologo
             let deleteButton ='<button' +
-                                                                    ' id=' + '\"' + 'btn_delete_' + paciente.id + '\"' +
-                                                                    ' type="button" onclick="deleteBy('+paciente.id+')">' +
-                                                                    '<i class="fas fa-trash-alt" id="delete"></i>' +
-                                                                    '</button>';
+                                        ' id=' + '\"' + 'btn_delete_' + odontologo.id + '\"' +
+                                        ' type="button" onclick="deleteBy('+odontologo.id+')">' +
+                                        '<i class="fas fa-trash-alt" id="delete"></i>' +
+                                        '</button>';
 
             //por cada paciente creamos un boton que muestra el id y que al hacerle clic invocará
             //a la función de java script findBy que se encargará de buscar la paciente que queremos
@@ -46,7 +47,7 @@ window.addEventListener('load', function () {
                     '<td class=\"td_nombre\">' + odontologo.nombre.toUpperCase() + '</td>' +
                     '<td class=\"td_apellido\">' + odontologo.apellido.toUpperCase() + '</td>' +
                     '<td class=\"td_matricula\">' + odontologo.matricula + '</td>' +
-                    '<td>' + updateButton + '</td>'
+                    '<td>' + updateButton + '</td>' +
                     '<td>' + deleteButton + '</td>';
 
         };

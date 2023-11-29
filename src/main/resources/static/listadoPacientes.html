@@ -46,6 +46,76 @@
     </nav>
 </menu>
 <main>
+
+    <div class="form-body-hide" id="form_update">
+        <div class="row">
+            <div class="form-holder">
+                <div class="form-content">
+                    <div class="form-items">
+                        <h3>Actualización Paciente</h3>
+                        <p>Complete todos los campos</p>
+                        <form id="update_pacientes_form">
+                            <div class="col-md-2">
+                                <label for="paciente_id">ID</label>
+                                <input value="" class="form-control" type="text" name="id"  id="paciente_id" placeholder="Id Paciente" readonly required>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="nombrePaciente">Nombre</label>
+                                    <input value="" class="form-control" type="text" name="nombrePaciente"  id="nombrePaciente" placeholder="Nombre" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="apellidoPaciente">Apellido</label>
+                                    <input value="" class="form-control" type="text" name="apellidoPaciente" id="apellidoPaciente" placeholder="Apellido" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <label for="pacienteDni">DNI</label>
+                                    <input value="" class="form-control" type="text" name="dniPaciente" id="pacienteDni" placeholder="Dni" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="fechaIngreso">Fecha Ingreso</label>
+                                    <input value="" class="form-control" type="date" name="fechaIngreso" id="fechaIngreso" placeholder="dd/mm/aaaa" required>
+                                </div>
+                            </div>
+                            <p>Domicilio</p>
+                            <div class="col-md-2">
+                                <label for="domicilio_id">ID Domicilio</label>
+                                <input value="" class="form-control" type="text" name="idDomicilio" id="domicilio_id" placeholder="Calle" readonly required>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <label for="calleDomicilio">Calle</label>
+                                    <input value="" class="form-control" type="text" name="calleDomicilio" id="calleDomicilio" placeholder="Calle" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="numeroDomicilio">Numero</label>
+                                    <input value="" class="form-control" type="text" name="numeroDomicilio" id="numeroDomicilio" placeholder="Número" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="localidadDomicilio">Localidad</label>
+                                    <input value="" class="form-control" type="text" name="localidadDomicilio" id="localidadDomicilio" placeholder="Localidad" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="provinciaDomicilio">Provincia</label>
+                                    <input value="" class="form-control" type="text" name="provinciaDomicilio" id="provinciaDomicilio" placeholder="Provincia" required>
+                                </div>
+                            </div>
+                            <div class="form-button mt-3">
+                                <button id="submit" type="submit" class="btn btn-primary">Actualizar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
     <div class="container">
         <h3 class="text-center p-4">Pacientes</h3>
         <table id="pacienteTable" class="table table-hover">
@@ -69,6 +139,42 @@
             </tbody>
         </table>
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="miModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                </div>
+                <div class="modal-footer">
+                    <!--<button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Confirmacion-->
+    <div class="modal fade" id="miModalConfirmacion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="btnAceptar">Aceptar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </main>
 <script type="text/javascript" src="js/paciente/listarPaciente.js"></script>
 <script type="text/javascript" src="js/paciente/updatePaciente.js"></script>

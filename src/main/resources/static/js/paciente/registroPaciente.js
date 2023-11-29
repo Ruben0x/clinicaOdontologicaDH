@@ -48,11 +48,32 @@ window.addEventListener("load", function () {
     };
 
     fetch(url, conf)
-      .then((res) =>
-      res.json())
+      .then((response) => {
+          if (!response.ok) {
+            throw new Error('No se pudo registrar el paciente');
+          }
+          return response.json();
+        })
       .then((data) => {
-        console.log(data)
+        console.log(data);
+        mostrarModal("Paciente registrado con exito");
+        formulario.reset();
+      }).catch((error) => {
+        mostrarModal(error);
       })
-    formulario.reset();
   }
 });
+
+      function mostrarModal(mensaje) {
+          // Función para mostrar un modal
+        // Selecciona el modal
+        const modal = document.getElementById('miModal');
+
+        // Actualiza el mensaje en el modal
+        const modalMensaje = modal.querySelector('.modal-body');
+        modalMensaje.textContent = mensaje;
+
+        // Muestra el modal
+        const miModal = new bootstrap.Modal(modal);
+        miModal.show();
+      }

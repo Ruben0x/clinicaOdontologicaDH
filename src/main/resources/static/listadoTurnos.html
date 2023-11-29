@@ -47,34 +47,39 @@
 </menu>
 <main>
 
-    <div id="updateForm" class="form-body-hide">
+    <div id="form_update" class="form-body-hide">
         <div class="row">
             <div class="form-holder">
                 <div class="form-content">
                     <div class="form-items">
-                        <h3>Registro Turno</h3>
+                        <h3>Actualizar Turno</h3>
                         <p>Complete todos los campos</p>
                         <form id="update_turnos_form">
+                            <di>
+                                <input value="" class="form-control" type="text" readonly name="turnoId" id="turnoId" placeholder="Id Turno">
+                            </di>
                             <div class="col-md-12">
-                                <select class="form-select" name="form-select" id="pacientesSelect">
+                                <input value="" class="form-control" type="text" readonly name="odontologoId" id="odontologoId" placeholder="Id Odontologo">
+                                <!--<select class="form-select" name="form-select" id="pacientesSelect">
                                     <option value="" selected>Selecciona un Paciente</option>
-                                </select>
+                                </select>-->
                             </div>
                             <div class="col-md-12">
-                                <select class="form-select" name="form-select" id="odontologosSelect">
+                                <input value="" class="form-control" type="text" readonly name="pacienteId" id="pacienteId" placeholder="Id Paciente">
+                                <!--<select class="form-select" name="form-select" id="odontologosSelect">
                                     <option value="" selected>Selecciona un Odontólogo</option>
-                                </select>
+                                </select>-->
                             </div>
                             <div class="fechaHora col-md-12 row  justify-content-arround">
                                 <div class="col-md-6">
-                                    <input class="form-control" type="date" name="fecha" id="fechaSelect" placeholder="Fecha" required>
+                                    <input value="" class="form-control" type="date" name="fecha" id="fechaTurno" placeholder="Fecha" required>
                                 </div>
                                 <div class="col-md-6">
-                                    <input class="form-control" type="time" name="hora" id="horaTurno" placeholder="Hora" required>
+                                    <input value="" class="form-control" type="time" name="hora" id="horaTurno" placeholder="Hora" required>
                                 </div>
                             </div>
                             <div class="form-button mt-3">
-                                <button id="submit" type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Registrar</button>
+                                <button id="submit" type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Actualizar</button>
                             </div>
                         </form>
                     </div>
@@ -105,6 +110,42 @@
             </tbody>
         </table>
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="miModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                </div>
+                <div class="modal-footer">
+                    <!--<button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Confirmacion-->
+    <div class="modal fade" id="miModalConfirmacion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="btnAceptar">Aceptar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </main>
 <script src="js/turno/listarTurno.js"></script>
 <script src="js/turno/updateTurno.js"></script>
